@@ -1,0 +1,105 @@
+//when we pass array to functions these are passed only by pass by refrence not value thats why we get output diff in print array function then in main 
+//in main array size is 24 byte so 24/4 == 6 (4 bec its an integer array each element is of size 4)
+//where as in print array bec its pass by ref its size =4 and 4/4 ==1 so only 1 element gets printed 
+#include<iostream>
+using namespace std ;
+
+void printarray(int *arr or arr[])
+{
+        cout<<"In function "<<sizeof(arr)<<endl;
+         int n =sizeof(arr)/sizeof(int);
+        for(int i=0 ; i<n; i++){
+        cout<<arr[i]<<endl;
+    }
+}
+int main(){
+    int arr[] = {1,2,3,4,5,6};
+    int n =sizeof(arr)/sizeof(int);
+
+
+    cout<<"In main "<<sizeof(arr)<<endl;
+    
+
+    for(int i=0 ; i<n; i++){
+        cout<<arr[i]<<endl;
+    }
+    printarray(arr);
+
+
+
+    return 0;
+}
+
+
+//when you aactually want to print array inside a function 
+#include<iostream>
+using namespace std ;
+
+void printarray(int *arr ,int n)
+{
+        cout<<"In function "<<sizeof(arr)<<endl;
+        //  int n =sizeof(arr)/sizeof(int);
+        for(int i=0 ; i<n; i++){
+        cout<<arr[i]<<endl;
+    }
+}
+int main(){
+    int arr[] = {1,2,3,4,5,6};
+    int n =sizeof(arr)/sizeof(int);
+
+
+    cout<<"In main "<<sizeof(arr)<<endl;
+    
+
+    for(int i=0 ; i<n; i++){
+        cout<<arr[i]<<endl;
+    }
+    printarray(arr,n);
+
+
+
+    return 0;
+}
+
+
+
+
+//----------------------------------------------------------------
+
+
+//to show they both share common memory which proves array are passed by refrence 
+//we change the order respect to above program we first make 0 th  element 100 in function then in main we first call the function and then we print the updated value 
+//which proves that they share same memory as value changes in both 
+
+
+#include<iostream>
+using namespace std ;
+
+void printarray(int *arr ,int n)
+{
+        cout<<"In function "<<sizeof(arr)<<endl;
+        //  int n =sizeof(arr)/sizeof(int);
+        arr[0]=100;
+        for(int i=0 ; i<n; i++){
+        cout<<arr[i]<<endl;
+    }
+}
+int main(){
+    int arr[] = {1,2,3,4,5,6};
+    int n =sizeof(arr)/sizeof(int);
+
+
+    
+    
+    printarray(arr,n);
+    cout<<"In main "<<sizeof(arr)<<endl;
+    
+    for(int i=0 ; i<n; i++){
+        cout<<arr[i]<<endl;
+    }
+
+
+
+
+    return 0;
+}
